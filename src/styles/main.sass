@@ -1,5 +1,5 @@
-@import '_debug';
-@import '_helpers';
+@import '_debug'
+@import '_helpers'
 
 html, body
   min-height: 100vh;
@@ -8,6 +8,31 @@ html, body
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+h1.header
+  font-size: 3.125em
+h2.header
+  font-size: 2.618em
+h3.header
+  font-size: 1.931em
+h4.header
+  font-size: 1.618em
+h5.header
+  font-size: 1.194em
+h6.header
+  font-size: 1em
+h1, h2, h3, h4, h5, h6
+  &.header
+    margin-bottom: 1em
+
 #app.fish.layout > .footer
   background: black
   color: white
+
+
+.container
+  padding: 2rem 2rem 0
+  max-width: 1080px
+  margin: auto
+
+.container-fluid
+  padding: 2rem 2rem 0

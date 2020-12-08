@@ -5,12 +5,8 @@ fish-layout.fill-height(sider="l")
   template(#sider) Left
   template(#content)
     .container
-      fish-row
-        fish-col(span="8")
-          h1 {{channelSlug}}
-        fish-col.align-right(span="18")
-          fish-input(icon="fa fa-search")
-
+      h1.header {{channelSlug}}
+      SearchFilters
       .results
         .result(v-for="result in results")
           fish-row
@@ -19,15 +15,16 @@ fish-layout.fill-height(sider="l")
             fish-col
               h3.title {{result.title}}
               .languages
-                h5 Languages
-                fish-tag(v-for="lang in result.languages", :index="lang") {{lang}}
+                fish-tag(v-for="lang in result.languages", :index="lang", :key="lang") {{lang}}
             fish-col
-              fish-button(type="primary", size="large") Translate
+              fish-button(type="primary", size="large")
+                router-link(:to="{ name: 'captioning', params: { videoId: 'Sk10Bz_TKPU' } }", tag="span") Translate
   template(#footer) Footer
 </template>
 
 <script>
 import BrowseHeader from '@/components/headers/BrowseHeader'
+import SearchFilters from '@/components/search/SearchFilters'
 
 export default {
   name: 'Channel',
@@ -35,7 +32,8 @@ export default {
     channelSlug: String
   },
   components: {
-    BrowseHeader
+    BrowseHeader,
+    SearchFilters
   },
   data: () => ({
     results: Array(12).fill(0).map(a => (
@@ -54,10 +52,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.container
-  padding: 2rem 2rem 0
-  max-width: 1080px
-  margin: auto
 
 .results .result
   padding: 1rem 0

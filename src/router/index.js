@@ -3,19 +3,26 @@ import VueRouter from 'vue-router'
 import StubComponent from '@/components/StubComponent.vue'
 import Feed from '@/pages/Feed.vue'
 import Channel from '@/pages/subtitler/Channel.vue'
+import VideoCaptioning from '@/pages/subtitler/VideoCaptioning.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'channel',
+    name: 'feed',
     component: Feed
   },
   {
     path: '/channel/:channelSlug',
     name: 'channel',
     component: Channel,
+    props: true
+  },
+  {
+    path: '/captioning/:videoId',
+    name: 'captioning',
+    component: VideoCaptioning,
     props: true
   },
   {
