@@ -24,12 +24,16 @@ class CaptionData {
       }
     }
     const idx = _sortedIndexBy(this.nodes, entry, 'data.start')
-    this.nodex.splice(idx, 0, entry)
+    this.nodes.splice(idx, 0, entry)
     return this
   }
 
   getSrt(){
     return stringifySync(this.nodes, { format: 'SRT' })
+  }
+
+  getVtt(){
+    return stringifySync(this.nodes, { format: 'WebVTT' })
   }
 }
 

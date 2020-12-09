@@ -4,8 +4,11 @@ import App from './App.vue'
 import FishUI from 'fish-ui'
 import router from './router'
 import store from './store'
+import filters from '@/plugins/filters'
 
 import '@/styles/main.sass'
+
+Vue.use(filters)
 
 Vue.use(FishUI)
 Vue.config.productionTip = false

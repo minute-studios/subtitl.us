@@ -1,7 +1,8 @@
 <template lang="pug">
 fish-timeline.caption-timeline
   fish-timeline-item(v-for="cue in cues", :key="cue.data.start", color="grey")
-    fish-input(type="textarea", @keydown="$emit('keydown', $event)", :value="cue.data.text")
+    .timestamp {{ cue.data.start | duration }}
+    fish-input(type="textarea", @keydown.native="$emit('typing', $event)", @click.native="$emit('focus', cue.data)", v-model="cue.data.text")
 </template>
 
 <script>
