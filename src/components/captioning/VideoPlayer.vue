@@ -77,11 +77,10 @@ export default {
   methods: {
     seek(timeMs){
       if (this.player.bufferedPercent() <= 0){
-        this.play()
-        this.player.on('canplay', () => {
-          this.pause()
+        this.player.one('play', () => {
           this.player.currentTime(timeMs / 1000)
         })
+        this.play()
       } else {
         this.player.currentTime(timeMs / 1000)
       }
@@ -120,7 +119,7 @@ export default {
 
       this.player.setTimeout(() => {
         this.textTrack.mode = 'showing'
-        console.log(this.textTrack)
+        // console.log(this.textTrack)
       }, 20)
     }
   }

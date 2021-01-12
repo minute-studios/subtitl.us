@@ -1,12 +1,8 @@
-// import moment from 'moment'
-// import momentDurationFormatSetup from 'moment-duration-format'
 import _capitalize from 'lodash/capitalize'
 import _kebabCase from 'lodash/kebabCase'
 import _find from 'lodash/find'
 import _filter from 'lodash/filter'
 import _startCase from 'lodash/startCase'
-
-// momentDurationFormatSetup(moment)
 
 function titleCase( str ){
   return str.split(' ').map( w => _capitalize(w) ).join(' ')

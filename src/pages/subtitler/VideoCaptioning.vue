@@ -7,14 +7,27 @@ fish-layout.fill-height
       h1.header {{video.title}}
       fish-row
         fish-col(type="auto")
-          CaptionTimeline(v-if="captionData", :captions="captionData", @typing="onTyping", @focus="onCaptionFocus")
+          CaptionTimeline(
+            v-if="captionData",
+            :current-time="currentTime",
+            :captions="captionData",
+            @typing="onTyping",
+            @prompt-click="playCue",
+            @focus-cue="playCue"
+          )
         fish-col(type="fixed", :width="640")
           fish-form.pad-v(inline)
             fish-field(label="Pause while typing?")
               fish-switch(v-model="pauseWhileTyping")
             fish-field(label="Delay")
               fish-input-number.pause-delay(v-model="pauseDelay", label="s", step="0.5", min="0.5", max="20")
-          VideoPlayer(ref="player", :youtubeId="videoId")
+          VideoPlayer(ref="player", :youtubeId="videoId", @playing="onPlaying")
+
+          .tips
+            h6 Helpful keyboard shortcuts
+            ul
+              li Enter: Move to next line and play
+              li Shift+Enter: Play current line
   template(#footer) Footer
 </template>
 
@@ -39,6 +52,7 @@ export default {
     video: {
       title: 'The Most Realistic Pokemon'
     },
+    currentTime: -1,
     captionData: null,
     pauseWhileTyping: true,
     pauseDelay: 1.5
@@ -51,15 +65,15 @@ export default {
     })
 
     this.captionData = new CaptionData(res.data)
-    const player = this.$refs.player
-    player.setCaptions(this.captionData.getVtt())
+    // const player = this.$refs.player
+    // player.setCaptions(this.captionData.getVtt())
   },
   methods: {
     onTyping(e){
       const player = this.$refs.player
       clearTimeout(this.keyboardTimeout)
 
-      player.setCaptions(this.captionData.getVtt())
+      // player.setCaptions(this.captionData.getVtt())
 
       if (!this.pauseWhileTyping){ return }
       if (player.player.paused()){ return }
@@ -69,11 +83,16 @@ export default {
       }, this.pauseDelay * 1000)
     },
 
-    onCaptionFocus(cueData){
+    onPlaying({ time, fraction }){
+      this.currentTime = time
+    },
+
+    playCue(cueData){
+      const fudge = 50
       const player = this.$refs.player
-      player.seek(cueData.start)
+      player.seek(cueData.start + fudge)
       setTimeout(() => {
-        player.playTo(cueData.end)
+        player.playTo(cueData.end - fudge)
       }, 100)
     }
   }
