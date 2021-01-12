@@ -1,0 +1,563 @@
+WEBVTT
+Genre: légendes
+Langue: en
+
+00:00:05.529 --> 00:00:11.950
+Je suis fasciné par la sélection naturelle; la
+idée que l'incroyable complexité et l'environnement
+
+00:00:11.950 --> 00:00:16.420
+l'adaptation est une conséquence de petits aléas
+changements.
+
+00:00:16.420 --> 00:00:20.930
+Cela ne devrait pas être une surprise que j'ai été
+fan de la chaîne youtube Primer depuis assez longtemps
+
+00:00:20.930 --> 00:00:22.110
+quelque temps.
+
+00:00:22.110 --> 00:00:27.190
+La chaîne approfondit les idées d'évolution
+par sélection naturelle, et plus encore.
+
+00:00:27.190 --> 00:00:35.370
+Je suis aussi fan de simulations, évidemment…
+alors quand Primer a publié la vidéo intitulée «Simulation
+
+00:00:35.370 --> 00:00:38.719
+Sélection naturelle »les doigts de mon programmeur
+a des démangeaisons.
+
+00:00:38.719 --> 00:00:41.760
+J'aime apprendre en jouant.
+
+00:00:41.760 --> 00:00:46.300
+Je voulais mettre la main sur les commandes et
+voir quels autres types de choses je pourrais apprendre
+
+00:00:46.300 --> 00:00:50.600
+de ces créatures blob mignonnes et sans prétention.
+
+00:00:50.600 --> 00:00:52.809
+C'était il y a un an.
+
+00:00:52.809 --> 00:00:57.600
+Depuis, j'ai contacté Justin et
+a pris la tâche de donner à ses créatures blob
+
+00:00:57.600 --> 00:01:00.780
+une nouvelle maison dans un navigateur Web.
+
+00:01:00.780 --> 00:01:03.149
+Voici le simulateur d'évolution.
+
+00:01:03.149 --> 00:01:08.520
+J'ai essayé de le garder semblable à l'original
+comme je pouvais, mais depuis que je devais tout réécrire
+
+00:01:08.520 --> 00:01:12.000
+à partir de zéro, il peut y avoir quelques différences mineures.
+
+00:01:12.000 --> 00:01:16.439
+Passons en revue les lois régissant le blob
+monde:
+
+00:01:16.439 --> 00:01:22.350
+Premièrement, dans n'importe quelle génération, chaque objet blob a besoin
+manger un morceau de nourriture et retourner au
+
+00:01:22.350 --> 00:01:25.890
+bord du monde pour survivre à la prochaine génération.
+
+00:01:25.890 --> 00:01:30.659
+Si une goutte contient deux morceaux de nourriture, alors
+se reproduira.
+
+00:01:30.659 --> 00:01:36.060
+Mais les blobs ont une quantité d'énergie fixe
+peut utiliser chaque jour pour se déplacer pour trouver de la nourriture,
+
+00:01:36.060 --> 00:01:40.479
+et la vitesse à laquelle ils consomment de l'énergie dépend
+sur trois traits.
+
+00:01:40.479 --> 00:01:43.790
+Le premier trait est la portée de vue.
+
+00:01:43.790 --> 00:01:49.640
+Les blobs se déplaceront de manière aléatoire jusqu'à ce qu'un morceau
+de la nourriture entre dans leur champ de vision.
+
+00:01:49.640 --> 00:01:55.270
+Une fois qu'une goutte peut voir de la nourriture, elle se déplace tout droit
+vers lui et le manger ... c'est-à-dire à moins qu'un autre
+
+00:01:55.270 --> 00:01:58.039
+blob les bat pour cela.
+
+00:01:58.039 --> 00:02:02.109
+Ce qui nous amène au trait suivant.
+
+00:02:02.109 --> 00:02:05.740
+Le trait de vitesse est la vitesse à laquelle un blob peut
+bouge toi.
+
+00:02:05.740 --> 00:02:08.720
+Il n’ya pas grand chose à dire.
+
+00:02:08.720 --> 00:02:13.361
+Vous pouvez activer un indicateur de vitesse qui rend
+plus les gouttes sont rapides, une couleur rouge plus vive, comme
+
+00:02:13.361 --> 00:02:15.370
+montré ici.
+
+00:02:15.370 --> 00:02:17.599
+Le troisième trait est la taille.
+
+00:02:17.599 --> 00:02:23.260
+Voici où les choses deviennent intéressantes:plus grand
+les blobs peuvent manger des blobs plus petits s'ils sont à
+
+00:02:23.260 --> 00:02:28.560
+au moins 20% plus gros… et s'ils sont assez rapides
+pour les attraper.
+
+00:02:28.560 --> 00:02:33.860
+Je devrais mentionner une différence spécifique entre
+la simulation Primer et la mienne:et qui a
+
+00:02:33.860 --> 00:02:35.910
+à voir avec le fonctionnement de la vitesse.
+
+00:02:35.910 --> 00:02:41.730
+J'ai remarqué que de très petites taches pouvaient bouger
+ultra-rapide car leur taille et leur vitesse
+
+00:02:41.730 --> 00:02:44.090
+n'étaient pas du tout liés.
+
+00:02:44.090 --> 00:02:48.900
+Cela me paraissait un peu bizarre ... une goutte le
+la taille d'une fourmi ne devrait pas pouvoir garder
+
+00:02:48.900 --> 00:02:53.430
+avec un blob de taille par défaut sous la normale
+conditions.
+
+00:02:53.430 --> 00:02:57.890
+Donc ce que j'ai fait, c'est coupler vitesse et taille
+ensemble.
+
+00:02:57.890 --> 00:03:03.099
+Si un blob est plus grand, il pourra se déplacer
+plus rapide qu'une goutte plus petite avec la même vitesse
+
+00:03:03.099 --> 00:03:04.920
+valeur.
+
+00:03:04.920 --> 00:03:08.349
+Pensez-y comme à la vitesse à laquelle vos membres peuvent bouger.
+
+00:03:08.349 --> 00:03:13.260
+Si vous pouvez effectuer le même nombre d'étapes par
+seconde en tant que fourmi, tu couvriras plus de distance
+
+00:03:13.260 --> 00:03:17.400
+juste à cause du fait que tu es gigantesque
+par rapport à la fourmi.
+
+00:03:17.400 --> 00:03:22.700
+Quoi qu'il en soit, voir plus loin, aller plus vite et
+utiliser d'autres blobs comme source de nourriture
+
+00:03:22.700 --> 00:03:27.220
+certainement des avantages, mais chacun d'eux vient
+avec un coût.
+
+00:03:27.220 --> 00:03:33.950
+Comme on dit, il n’existe pas de
+déjeuner gratuit, et ces blobs paient en énergie.
+
+00:03:33.950 --> 00:03:40.829
+Chaque fois qu'un blob se déplace, il perd de l'énergie proportionnellement
+à sa portée de visée plus sa taille au cube fois
+
+00:03:40.829 --> 00:03:43.280
+c'est la vitesse au carré.
+
+00:03:43.280 --> 00:03:48.860
+Nous aurions pu choisir n'importe quelle relation de coût énergétique
+on aime, mais Justin a choisi ce coût énergétique
+
+00:03:48.860 --> 00:03:54.280
+pour ressembler à la formule de l'énergie cinétique…
+ce qui a beaucoup de sens.
+
+00:03:54.280 --> 00:03:58.800
+Quand les gouttes parviennent à manger deux morceaux de nourriture
+et reviennent au bord de la planche, ils
+
+00:03:58.800 --> 00:04:01.090
+sont capables de se reproduire.
+
+00:04:01.090 --> 00:04:05.840
+Cela signifie que le blob est dupliqué mais que chacun
+des traits du doublon sont augmentés
+
+00:04:05.840 --> 00:04:08.410
+ou vers le bas par un montant aléatoire.
+
+00:04:08.410 --> 00:04:14.189
+Par exemple, pour la progéniture d'un objet blob donné,
+il y a une chance égale qu'il soit plus grand
+
+00:04:14.189 --> 00:04:20.459
+ou plus petit, plus rapide ou plus lent, voir plus loin
+ou d'être condamné à errer seul dans le
+
+00:04:20.459 --> 00:04:27.010
+l'obscurité, inconsciente du vert délicieux
+récompenses qui attendent au-delà du bord de son nez.
+
+00:04:27.010 --> 00:04:31.530
+C'est-à-dire qu'il n'y a rien de intégré
+la simulation qui oblige les jeunes blobs à
+
+00:04:31.530 --> 00:04:34.919
+mieux se reproduire que leurs parents.
+
+00:04:34.919 --> 00:04:40.360
+Nous ne savons même pas ce qui serait mieux
+exactement, mais ce n’est pas nécessaire.
+
+00:04:40.360 --> 00:04:45.860
+Avec suffisamment de temps, une large population
+les traits évolueront en moyenne vers une
+
+00:04:45.860 --> 00:04:49.590
+optimum pour la survie dans l'environnement actuel.
+
+00:04:49.590 --> 00:04:54.919
+Blobs qui, par hasard, ont des traits plus proches
+à l'optimum aura une plus grande chance de
+
+00:04:54.919 --> 00:05:00.320
+se reproduire, et leur progéniture aura
+des valeurs de trait plus proches de ces parents qui réussissent
+
+00:05:00.320 --> 00:05:02.840
+que le reste de la population.
+
+00:05:02.840 --> 00:05:07.590
+Vous pouvez avoir un aperçu de cette adaptation
+en regardant la page des tendances.
+
+00:05:07.590 --> 00:05:11.720
+Cela montre comment les traits de la population blob
+change avec le temps.
+
+00:05:11.720 --> 00:05:15.919
+La ligne la plus claire est la valeur moyenne de
+le trait.
+
+00:05:15.919 --> 00:05:20.470
+La région autour de la moyenne est la norme
+déviation; qui vous donne une idée de comment
+
+00:05:20.470 --> 00:05:24.000
+réparties les valeurs sont dans la population.
+
+00:05:24.000 --> 00:05:28.720
+Les lignes les plus hautes et les plus basses sont le maximum
+et les valeurs minimales du trait.
+
+00:05:28.720 --> 00:05:32.490
+Ils correspondent aux blobs en haut et
+bas du pack.
+
+00:05:32.490 --> 00:05:37.930
+Par exemple, avec ces paramètres lorsque nous
+regardez la portée de vue, nous pouvons voir un tas de
+
+00:05:37.930 --> 00:05:42.880
+générations où il y a une énorme propagation
+dans l'écart type.
+
+00:05:42.880 --> 00:05:47.750
+On peut revenir à la vision du monde, regarde
+à une génération à cette époque et tourner
+
+00:05:47.750 --> 00:05:52.540
+sur les indicateurs de portée de visée pour voir ceci
+valeur de trait pour chaque blob.
+
+00:05:52.540 --> 00:05:56.750
+Certains de ces cercles sont vraiment grands et d'autres
+sont vraiment petits.
+
+00:05:56.750 --> 00:06:01.720
+Il y a beaucoup de déviation dans la vue
+gamme de cette génération.
+
+00:06:01.720 --> 00:06:06.760
+Mais, revenant à la page des tendances, nous
+peut voir un tas de générations où la norme
+
+00:06:06.760 --> 00:06:10.430
+l'écart dans la plage de visée est faible.
+
+00:06:10.430 --> 00:06:14.490
+Si nous regardons le monde blob à cette époque,
+nous pouvons voir que les cercles de portée de visée sont
+
+00:06:14.490 --> 00:06:17.419
+à peu près la même taille.
+
+00:06:17.419 --> 00:06:21.720
+Si vous expérimentez un peu cela, vous pouvez
+remarquez des choses vraiment intéressantes sur
+
+00:06:21.720 --> 00:06:23.250
+comment ces blobs évoluent.
+
+00:06:23.250 --> 00:06:29.410
+Par exemple, nous pouvons changer la façon dont bébé
+les blobs proviendront de leurs parents en modifiant
+
+00:06:29.410 --> 00:06:32.840
+la variance de mutation dans les paramètres.
+
+00:06:32.840 --> 00:06:38.040
+Si nous avons une variance de mutation dans la taille
+trait d'environ un, alors cela signifie bébé
+
+00:06:38.040 --> 00:06:43.860
+les blobs auront une chance d'être plus gros ou
+plus petits que leurs parents d'une valeur d'environ
+
+00:06:43.860 --> 00:06:44.860
+une.
+
+00:06:44.860 --> 00:06:54.330
+Augmentons la vitesse de lecture et regardons
+les blobs évoluent pendant un certain temps.
+
+00:06:54.330 --> 00:06:55.330
+[...]
+
+00:06:55.330 --> 00:07:04.620
+Notez que les petites taches sont généralement les
+dernier à trouver de la nourriture.
+
+00:07:04.620 --> 00:07:10.009
+C’est parce qu’être petit, c’est bien plus
+économe en énergie, de sorte que les petites taches peuvent errer
+
+00:07:10.009 --> 00:07:13.320
+autour à la recherche de nourriture plus longtemps.
+
+00:07:13.320 --> 00:07:18.590
+Si nous nous concentrons sur l'un des gros blobs, nous pouvons
+voir que tout ce qu'il a à faire est de chasser un
+
+00:07:18.590 --> 00:07:24.160
+plus petite goutte et mangez-la avant qu'elle ne s'épuise
+d'énergie et doit rentrer chez lui.
+
+00:07:24.160 --> 00:07:30.639
+Une petite goutte, en revanche, peut errer
+très longtemps avant de manquer d'énergie.
+
+00:07:30.639 --> 00:07:35.919
+Il y a donc une pression de sélection vers
+être plus petit parce que de plus petits blobs peuvent dépenser
+
+00:07:35.919 --> 00:07:39.700
+plus de temps à chercher deux morceaux de nourriture.
+
+00:07:39.700 --> 00:07:44.740
+Et si nous regardons la tendance du trait de taille
+on voit qu'elle décroît d'une valeur
+
+00:07:44.740 --> 00:07:49.919
+de 10 à environ 8 sur 600 générations.
+
+00:07:49.919 --> 00:07:55.750
+Alors que se passe-t-il si on diminue la mutation
+variance dans le trait de taille pour que bébé blobs
+
+00:07:55.750 --> 00:07:58.840
+sont moins différents de leurs parents.
+
+00:07:58.840 --> 00:08:03.520
+La taille moyenne diminuera-t-elle plus lentement que
+avant parce qu'ils font muter leur taille
+
+00:08:03.520 --> 00:08:05.430
+Moins?
+
+00:08:05.430 --> 00:08:07.889
+Il s'avère que c'est le contraire!
+
+00:08:07.889 --> 00:08:13.139
+En 600 générations, la taille diminue à
+7 au lieu de 9.
+
+00:08:13.139 --> 00:08:19.610
+Donc, si les blobs muent moins, pourquoi
+leur taille moyenne évolue plus vite?
+
+00:08:19.610 --> 00:08:23.860
+Si nous comparons les deux mondes, nous pouvons voir pourquoi
+cela pourrait être le cas.
+
+00:08:23.860 --> 00:08:27.860
+Dans le premier monde, il y avait des gouttes de beaucoup
+differentes tailles.
+
+00:08:27.860 --> 00:08:32.720
+La concurrence était féroce et si une goutte se produisait
+pour être plus petit que la moyenne, il y avait
+
+00:08:32.720 --> 00:08:37.850
+une plus grande chance qu'il soit assez petit pour
+être mangé par un plus gros blob.
+
+00:08:37.850 --> 00:08:44.170
+Mais dans ce nouveau monde, où la variation
+la taille entre les blobs est petite, la plupart des blobs
+
+00:08:44.170 --> 00:08:50.650
+sont à peu près de la même taille, donc il y a presque
+aucune chance d'être à côté d'un autre blob qui
+
+00:08:50.650 --> 00:08:53.000
+est suffisamment grand pour constituer une menace.
+
+00:08:53.000 --> 00:08:59.100
+En d'autres termes, il n'y a aucun coût à être
+légèrement plus petit donc la moyenne diminuera
+
+00:08:59.100 --> 00:09:00.980
+à un rythme régulier.
+
+00:09:00.980 --> 00:09:05.650
+C'est une bonne chose à garder à l'esprit; juste
+car il y a énormément de mutations
+
+00:09:05.650 --> 00:09:09.080
+ne veut pas dire que l’évolution se produit plus rapidement.
+
+00:09:09.080 --> 00:09:13.920
+La vitesse d'évolution dépend du sélectif
+pressions dans l’environnement.
+
+00:09:13.920 --> 00:09:19.910
+J'ai remarqué autre chose en jouant
+autour de cela que j'ai trouvé vraiment incroyable.
+
+00:09:19.910 --> 00:09:22.870
+Cela a à voir avec l'âge des blobs.
+
+00:09:22.870 --> 00:09:27.430
+L'âge correspond au nombre de générations d'un blob
+existait jusqu'à présent.
+
+00:09:27.430 --> 00:09:33.500
+Un blob nouvellement né, par exemple, aura
+un âge de zéro et s'il survit au suivant
+
+00:09:33.500 --> 00:09:36.700
+génération, il aura un âge de 1.
+
+00:09:36.700 --> 00:09:42.870
+La chose étrange est la suivante:l'âge moyen de
+les blobs dans une génération se développent à environ
+
+00:09:42.870 --> 00:09:48.550
+2, puis se stabilise, peu importe comment je change
+les paramètres.
+
+00:09:48.550 --> 00:09:51.270
+Il le fait à chaque fois.
+
+00:09:51.270 --> 00:09:55.780
+Il semble qu'il doit y avoir des
+règle ici à découvrir.
+
+00:09:55.780 --> 00:09:57.220
+Alors pourquoi cela arrive-t-il?
+
+00:09:57.220 --> 00:10:03.150
+Je pense en fait que cette explication mérite
+sa propre vidéo, je vais donc la sauvegarder pour une autre
+
+00:10:03.150 --> 00:10:04.440
+temps.
+
+00:10:04.440 --> 00:10:08.290
+D'ici là, vous pouvez essayer de comprendre
+pour vous-même.
+
+00:10:08.290 --> 00:10:12.110
+Et j’aimerais entendre dans les commentaires ce que
+types de comportements et de tendances que vous remarquez
+
+00:10:12.110 --> 00:10:14.140
+tout en jouant avec ça.
+
+00:10:14.140 --> 00:10:18.650
+Comme d'habitude, merci beaucoup à ceux d'entre vous qui soutiennent
+moi sur Patreon.
+
+00:10:18.650 --> 00:10:22.560
+Et je devrais mentionner qu'il y en a un autre
+moyen de me soutenir qui aiderait réellement
+
+00:10:22.560 --> 00:10:24.110
+moi encore plus.
+
+00:10:24.110 --> 00:10:28.040
+J'ai activé les sponsors github sur mes projets.
+
+00:10:28.040 --> 00:10:33.960
+Si vous avez un compte github, vous pouvez maintenant
+aller à mon profil ou à un dépôt github minutelabs
+
+00:10:33.960 --> 00:10:36.420
+et cliquez sur le bouton Sponsor.
+
+00:10:36.420 --> 00:10:41.070
+Si vous me parrainez de quelque montant que ce soit, je reçois chaque
+sou de cet argent.
+
+00:10:41.070 --> 00:10:46.710
+Non seulement cela, mais github correspondra à chaque
+don que je reçois via les sponsors github…
+
+00:10:46.710 --> 00:10:52.920
+qui double efficacement tous les dons à
+aucun coût supplémentaire pour vous donc j'espère que vous envisagez
+
+00:10:52.920 --> 00:10:54.210
+faire ça.
+
+00:10:54.210 --> 00:10:59.070
+Si vous le faites, faites-le moi savoir et je pourrai vous ajouter à
+la liste des bêta-testeurs MinuteLabs si vous le souhaitez
+
+00:10:59.070 --> 00:11:00.070
+comme.
+
+00:11:00.070 --> 00:11:04.320
+Bientôt, je publierai des améliorations
+au simulateur d'évolution pour vous permettre de
+
+00:11:04.320 --> 00:11:07.830
+changer encore plus le comportement des blobs.
+
+00:11:07.830 --> 00:11:11.350
+Alors je te reverrai, ... plus tôt que d'habitude
+avec quelque chose de nouveau.

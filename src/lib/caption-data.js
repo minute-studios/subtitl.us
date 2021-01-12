@@ -3,18 +3,32 @@ import _cloneDeep from 'lodash/cloneDeep'
 import { parseSync, stringifySync } from 'subtitle'
 
 class CaptionData {
-  constructor(srtText){
+  constructor(vttText){
     this.nodes = []
-    if (srtText){
-      this.nodes = parseSync(srtText)
+    if (vttText){
+      this.nodes = parseSync(vttText)
       this.fixTiming()
     }
   }
 
+  get nodes(){
+    return this._nodes
+  }
+
+  set nodes(n){
+    this._nodes = n
+    this._cues = this._nodes.filter(n => n.type === 'cue')
+  }
+
+  get cues(){
+    return this._cues
+  }
+
   fixTiming(){
-    for (let i = 0, l = this.nodes.length - 1; i < l; i++){
-      const next = this.nodes[i + 1]
-      const n = this.nodes[i]
+    const cues = this.cues
+    for (let i = 0, l = cues.length - 1; i < l; i++){
+      const next = cues[i + 1]
+      const n = cues[i]
       n.data.end = Math.min(n.data.end, next.data.start)
     }
   }

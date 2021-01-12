@@ -52,10 +52,10 @@ export default {
   mounted(){
     this.player = videojs(this.$refs.player, this.options, () => {
       const duration = this.player.duration() * 1000
-      this.player.setInterval(() => {
+      this.player.on('timeupdate', () => {
         const time = this.player.currentTime() * 1000
         this.$emit('playing', { time, fraction: time / duration })
-      }, 100)
+      })
 
       this.$emit('ready', duration)
     })
@@ -102,13 +102,17 @@ export default {
       this.play()
     },
 
-    setCaptions(vttText){
-      const srt = new Blob([vttText], { type: 'text/vtt; charset=UTF-8' })
-      const url = URL.createObjectURL(srt)
+    clearCaptions(){
       if (this.textTrack){
         this.textTrack.mode = 'hidden'
         this.player.removeRemoteTextTrack(this.textTrack)
       }
+    },
+
+    setCaptions(vttText){
+      const srt = new Blob([vttText], { type: 'text/vtt; charset=UTF-8' })
+      const url = URL.createObjectURL(srt)
+      this.clearCaptions()
 
       this.textTrack = this.player.addRemoteTextTrack({
         src: url,

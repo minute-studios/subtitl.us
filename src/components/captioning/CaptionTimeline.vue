@@ -51,19 +51,26 @@ export default {
   watch: {
     captions: {
       handler: 'sanitizeTarget',
+      deep: true,
       immediate: true
     },
     value: {
       handler: 'copyInput',
       immediate: true
+    },
+    target: {
+      handler(){
+        this.$emit('input', this.target)
+      },
+      deep: true
     }
   },
   computed: {
     cues(){
-      return this.captions.nodes.filter(n => n.type === 'cue')
+      return this.captions.cues
     },
     targetCues(){
-      return this.target.nodes.filter(n => n.type === 'cue')
+      return this.target.cues
     },
     activeCue(){
       const idx = _sortedIndexBy(this.cues, { data: { start: this.currentTime } }, o => o.data.start )
@@ -73,13 +80,13 @@ export default {
   methods: {
     sanitizeTarget(){
       this.target = this.captions.clone()
-      this.target.nodes.forEach(n => { n.data.text = '' })
+      this.target.cues.forEach(n => { n.data.text = '' })
       this.copyInput()
     },
     copyInput(){
       if (!this.value){ return }
-      this.target.nodes.forEach((n, i) => {
-        const s = this.value && this.value.nodes[i]
+      this.target.cues.forEach((n, i) => {
+        const s = this.value && this.value.cues[i]
         n.data.text = s ? s.data.text : ''
       })
     },

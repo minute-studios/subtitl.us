@@ -7,8 +7,19 @@ fish-layout.fill-height
       h1.header {{video.title}}
       fish-row
         fish-col(type="auto")
+          fish-form.pad-vh(inline)
+            fish-field(label="Target Language")
+              fish-select(search, v-model="targetLang")
+                fish-option(content="English", index="en")
+                fish-option(content="French", index="fr")
+            fish-field
+              fish-button(type="primary", @click="autoTranslate") Auto Translate
+            fish-field
+              fish-button(@click="clearTranslation") Delete changes
+
           CaptionTimeline(
             v-if="captionData",
+            v-model="translatedCaptionData",
             :current-time="currentTime",
             :captions="captionData",
             @typing="onTyping",
@@ -16,12 +27,16 @@ fish-layout.fill-height
             @focus-cue="playCue"
           )
         fish-col(type="fixed", :width="640")
-          fish-form.pad-v(inline)
-            fish-field(label="Pause while typing?")
-              fish-switch(v-model="pauseWhileTyping")
-            fish-field(label="Delay")
-              fish-input-number.pause-delay(v-model="pauseDelay", label="s", step="0.5", min="0.5", max="20")
           VideoPlayer(ref="player", :youtubeId="videoId", @playing="onPlaying")
+          fish-form.pad-v(inline)
+            fish-field
+              fish-button(type="primary", @click="watchWithTranslations")
+                i.fa.fa-play
+                span Watch with my captions
+            //- fish-field(label="Pause while typing?")
+            //-   fish-switch(v-model="pauseWhileTyping")
+            //- fish-field(label="Delay")
+            //-   fish-input-number.pause-delay(v-model="pauseDelay", label="s", step="0.5", min="0.5", max="20")
 
           .tips
             h6 Helpful keyboard shortcuts
@@ -52,21 +67,21 @@ export default {
     video: {
       title: 'The Most Realistic Pokemon'
     },
+    targetLang: 'fr',
     currentTime: -1,
-    captionData: null,
+    captionData: new CaptionData(),
+    translatedCaptionData: null,
     pauseWhileTyping: true,
     pauseDelay: 1.5
   }),
   async mounted(){
     const res = await axios({
       method: 'get',
-      url: '/data/captions.srt',
+      url: '/data/captions.vtt',
       responseType: 'text'
     })
 
     this.captionData = new CaptionData(res.data)
-    // const player = this.$refs.player
-    // player.setCaptions(this.captionData.getVtt())
   },
   methods: {
     onTyping(e){
@@ -94,6 +109,27 @@ export default {
       setTimeout(() => {
         player.playTo(cueData.end - fudge)
       }, 100)
+    },
+
+    async autoTranslate(){
+      const res = await axios({
+        method: 'get',
+        url: '/data/captions_fr.vtt',
+        responseType: 'text'
+      })
+
+      this.translatedCaptionData = new CaptionData(res.data)
+    },
+
+    clearTranslation(){
+      this.translatedCaptionData = new CaptionData()
+    },
+
+    watchWithTranslations(){
+      const player = this.$refs.player
+      player.setCaptions(this.translatedCaptionData.getVtt())
+      player.seek(0)
+      player.play()
     }
   }
 }
