@@ -20,7 +20,7 @@ const routes = [
     props: true
   },
   {
-    path: '/captioning/:videoId',
+    path: '/video/:videoId',
     name: 'captioning',
     component: VideoCaptioning,
     props: true

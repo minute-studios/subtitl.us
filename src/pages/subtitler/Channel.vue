@@ -18,7 +18,7 @@ fish-layout.fill-height(sider="l")
                 fish-tag(v-for="lang in result.languages", :index="lang", :key="lang") {{lang}}
             fish-col
               fish-button(type="primary", size="large")
-                router-link(:to="{ name: 'captioning', params: { videoId: 'Sk10Bz_TKPU' } }", tag="span") Translate
+                router-link(:to="{ name: 'captioning', params: { videoId: '6nMo8T3T0L4' } }", tag="span") Translate
   template(#footer) Footer
 </template>
 
