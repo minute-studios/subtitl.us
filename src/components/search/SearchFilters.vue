@@ -24,8 +24,8 @@ import Promise from 'bluebird'
 import axios from 'axios'
 
 const supportedLangsPromise = Promise.all([
-  axios.get('/data/supported-languages.json').get('data'),
-  axios.get('/data/languages.json').get('data')
+  axios.get('data/supported-languages.json').get('data'),
+  axios.get('data/languages.json').get('data')
 ]).spread((supported, languages) => {
   const languagesById = _keyBy(
     languages.map(([id, enName, name]) => ({ id, enName, name })),

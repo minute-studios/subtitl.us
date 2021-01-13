@@ -77,7 +77,7 @@ export default {
   async mounted(){
     const res = await axios({
       method: 'get',
-      url: '/data/captions.vtt',
+      url: 'data/captions.vtt',
       responseType: 'text'
     })
 
@@ -114,7 +114,7 @@ export default {
     async autoTranslate(){
       const res = await axios({
         method: 'get',
-        url: '/data/captions_fr.vtt',
+        url: 'data/captions_fr.vtt',
         responseType: 'text'
       })
 
