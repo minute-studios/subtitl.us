@@ -1,7 +1,7 @@
 <template lang="pug">
 fish-timeline.caption-timeline
   fish-timeline-item(v-for="(cue, i) in cues", :key="cue.data.start", :color="cue === activeCue ? 'green' : 'grey'", ref="cueEls")
-    .prompt.clickable(@click="$emit('prompt-click', cue.data)")
+    .prompt.clickable(@click="$emit('prompt-click', cue.data)", :class="{ active: cue === activeCue }")
       span.timestamp {{ cue.data.start | duration }}
       span.original-text {{ cue.data.text }}
     fish-input(
@@ -12,6 +12,8 @@ fish-timeline.caption-timeline
       v-model="targetCues[i].data.text"
       v-focus="i === focused"
     )
+  fish-timeline-item
+    span END
 </template>
 
 <script>
@@ -110,7 +112,6 @@ export default {
 
 <style lang="sass" scoped>
 .caption-timeline
-  padding-right: 2rem
   ::v-deep .fish.input
     width: 100%
   ::v-deep textarea
@@ -129,11 +130,15 @@ export default {
     color: $text
     font-family: $font-monospace
 
-  &:hover
+  &.active
     color: $text-green
-
     .timestamp
       color: $text-green
+
+  &:hover
+    color: $text-blue
+    .timestamp
+      color: $text-blue
 .input
   color: $text-blue
 </style>

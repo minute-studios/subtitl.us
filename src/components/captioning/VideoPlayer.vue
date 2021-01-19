@@ -23,8 +23,8 @@ export default {
   computed: {
     options(){
       return {
-        width: 640,
-        height: 320,
+        width: 640 / 2,
+        height: 320 / 2,
         autoplay: false,
         controls: true,
         preload: 'auto',
@@ -131,5 +131,14 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.video-player
+  ::v-deep .video-js .vjs-current-time
+    display: block
 
+  ::v-deep .video-js .vjs-remaining-time
+    display: none
+
+  ::v-deep .video-js .vjs-picture-in-picture-control,
+  ::v-deep .video-js .vjs-fullscreen-control
+    display: none
 </style>

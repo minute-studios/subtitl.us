@@ -1,18 +1,29 @@
 <template lang="pug">
-fish-layout.fill-height(sider="l")
+fish-layout.fill-height
   template(#header)
     BrowseHeader
-  template(#sider) Left
   template(#content)
     .container-fluid
-      h1.header Featured Channels
-      fish-row
-        fish-col(type="auto")
-          router-link(:to="{ name: 'channel', params: { channelSlug: 'minutelabsio' } }")
-            fish-col.thumbnail(type="fixed", :width="400")
-              fish-image(url="https://yt3.ggpht.com/W4mDLBwUkR5-t4IYbHgLEho_GnqxNaMLwHw2imVO7O7aCt8Tr5301Q1nrjGou2kmLSvK_WCBEQ=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" rounded)
-            fish-col
-              h3.title MinuteLabs.io
+      h2.header From Your Subscriptions
+      .media-grid
+        router-link(:to="{ name: 'channel', params: { channelSlug: 'minutelabsio' } }")
+          fish-card
+            img(width="100%", slot="image", src="https://yt3.ggpht.com/ytc/AAUvwnhz4WmHt4YZriL-WHqEGS-5nf2QY0V5vaTTMFpW=s176-c-k-c0x00ffffff-no-rj-mo")
+            h3.title minutephysics
+        router-link(:to="{ name: 'channel', params: { channelSlug: 'minutelabsio' } }")
+          fish-card
+            img(width="100%", slot="image", src="https://yt3.ggpht.com/ytc/AAUvwngGYX8_aHh3FnTJkYR9HFBm0XDVxRGDfPg12Tu3=s176-c-k-c0x00ffffff-no-rj-mo")
+            h3.title MinuteEarth
+        router-link(:to="{ name: 'channel', params: { channelSlug: 'minutelabsio' } }")
+          fish-card
+            img(width="100%", slot="image", src="https://yt3.ggpht.com/ytc/AAUvwnjLKABCZJCxz5WsT8ORxwQxGwW1o5QMZbyZBTABVA=s176-c-k-c0x00ffffff-no-rj-mo")
+            h3.title Primer
+      h2.header Featured Channels
+      .media-grid
+        router-link(:to="{ name: 'channel', params: { channelSlug: 'minutelabsio' } }")
+          fish-card
+            img(width="100%", slot="image", src="https://yt3.ggpht.com/ytc/AAUvwnhz4WmHt4YZriL-WHqEGS-5nf2QY0V5vaTTMFpW=s176-c-k-c0x00ffffff-no-rj-mo")
+            h3.title minutephysics
 
   template(#footer) Footer
 </template>
@@ -27,3 +38,12 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.media-grid
+  display: flex
+  width: 100%
+  > *
+    width: 15%
+    margin-right: 3%
+</style>

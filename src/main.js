@@ -5,7 +5,7 @@ import FishUI from 'fish-ui'
 import router from './router'
 import store from './store'
 import filters from '@/plugins/filters'
-
+import '@/components/common/_globals'
 import '@/styles/main.sass'
 
 Vue.use(filters)
