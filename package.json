@@ -13,7 +13,7 @@
     "@vuikit/theme": "^0.8.1",
     "amazon-cognito-auth-js": "^1.3.3",
     "amazon-cognito-identity-js": "^4.5.5",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "bluebird": "^3.7.2",
     "core-js": "^3.6.5",
     "fish-ui": "^1.2.21",
