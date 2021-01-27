@@ -1,0 +1,564 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:05.529 --> 00:00:11.950
+I’m fascinated by natural selection; the
+idea that incredible complexity and environmental
+
+00:00:11.950 --> 00:00:16.420
+adaptation is a consequence of small random
+changes.
+
+00:00:16.420 --> 00:00:20.930
+It should be no surprise that I’ve been
+a fan of the Primer youtube channel for quite
+
+00:00:20.930 --> 00:00:22.110
+a while.
+
+00:00:22.110 --> 00:00:27.190
+The channel digs deep into ideas of evolution
+by natural selection, and more.
+
+00:00:27.190 --> 00:00:35.370
+I am also a fan of simulations, obviously…
+so when Primer released the video titled “Simulating
+
+00:00:35.370 --> 00:00:38.719
+Natural Selection” my programmer’s fingers
+got itchy.
+
+00:00:38.719 --> 00:00:41.760
+I like learning by playing.
+
+00:00:41.760 --> 00:00:46.300
+I wanted to get my hands on the controls and
+see what other kinds of things I could learn
+
+00:00:46.300 --> 00:00:50.600
+from these cute, unassuming blob creatures.
+
+00:00:50.600 --> 00:00:52.809
+That was a year ago.
+
+00:00:52.809 --> 00:00:57.600
+Since then I got in touch with Justin and
+took on the task of giving his blob creatures
+
+00:00:57.600 --> 00:01:00.780
+a new home in a web browser.
+
+00:01:00.780 --> 00:01:03.149
+This is the Evolution Simulator.
+
+00:01:03.149 --> 00:01:08.520
+I tried to keep it as similar to the original
+as I could, but since I had to rewrite everything
+
+00:01:08.520 --> 00:01:12.000
+from scratch, there may be some minor differences.
+
+00:01:12.000 --> 00:01:16.439
+Let’s go through the laws governing blob
+world:
+
+00:01:16.439 --> 00:01:22.350
+First, in any generation, every blob needs
+to eat one piece of food and return to the
+
+00:01:22.350 --> 00:01:25.890
+edge of the world to survive to the next generation.
+
+00:01:25.890 --> 00:01:30.659
+If a blob gets two pieces of food, then it
+will reproduce.
+
+00:01:30.659 --> 00:01:36.060
+But blobs have a fixed amount of energy they
+can use every day to move around finding food,
+
+00:01:36.060 --> 00:01:40.479
+and the rate that they use up energy depends
+on three traits.
+
+00:01:40.479 --> 00:01:43.790
+The first trait is sight range.
+
+00:01:43.790 --> 00:01:49.640
+Blobs will move in a random way until a piece
+of food enters their range of vision.
+
+00:01:49.640 --> 00:01:55.270
+Once a blob can see food, it will move straight
+towards it and eat it… that is, unless another
+
+00:01:55.270 --> 00:01:58.039
+blob beats them to it.
+
+00:01:58.039 --> 00:02:02.109
+Which brings us to the next trait.
+
+00:02:02.109 --> 00:02:05.740
+The speed trait is just how fast a blob can
+move.
+
+00:02:05.740 --> 00:02:08.720
+There’s not much more to say than that.
+
+00:02:08.720 --> 00:02:13.361
+You can enable a speed indicator that makes
+the faster blobs a brighter red color, as
+
+00:02:13.361 --> 00:02:15.370
+shown here.
+
+00:02:15.370 --> 00:02:17.599
+The third trait is size.
+
+00:02:17.599 --> 00:02:23.260
+Here’s where things get interesting: larger
+blobs can eat smaller blobs if they are at
+
+00:02:23.260 --> 00:02:28.560
+least 20% larger… and if they are fast enough
+to catch them.
+
+00:02:28.560 --> 00:02:33.860
+I should mention one specific difference between
+the Primer simulation and mine: and that has
+
+00:02:33.860 --> 00:02:35.910
+to do with how speed works.
+
+00:02:35.910 --> 00:02:41.730
+I noticed that really tiny blobs could move
+lightning fast because their size and speed
+
+00:02:41.730 --> 00:02:44.090
+weren’t related at all.
+
+00:02:44.090 --> 00:02:48.900
+This looked a bit weird to me… a blob the
+size of an ant shouldn’t be able to keep
+
+00:02:48.900 --> 00:02:53.430
+up with a default sized blob under normal
+circumstances.
+
+00:02:53.430 --> 00:02:57.890
+So what I did was I coupled speed and size
+together.
+
+00:02:57.890 --> 00:03:03.099
+If a blob is larger it will be able to move
+faster than a smaller blob with the same speed
+
+00:03:03.099 --> 00:03:04.920
+value.
+
+00:03:04.920 --> 00:03:08.349
+Think of it like how fast your limbs can move.
+
+00:03:08.349 --> 00:03:13.260
+If you can take the same number of steps per
+second as an ant, you will cover more distance
+
+00:03:13.260 --> 00:03:17.400
+just because of the fact that you’re gigantic
+compared to the ant.
+
+00:03:17.400 --> 00:03:22.700
+Anyways, seeing farther, moving faster, and
+using fellow blobs as a source of food are
+
+00:03:22.700 --> 00:03:27.220
+certainly advantages, but each of them comes
+with a cost.
+
+00:03:27.220 --> 00:03:33.950
+As they say, there’s no such thing as a
+free lunch, and these blobs pay in energy.
+
+00:03:33.950 --> 00:03:40.829
+Every time a blob moves it loses energy proportional
+to its sight range plus its size cubed times
+
+00:03:40.829 --> 00:03:43.280
+it’s speed squared.
+
+00:03:43.280 --> 00:03:48.860
+We could have chosen any energy cost relationship
+we like, but Justin chose this energy cost
+
+00:03:48.860 --> 00:03:54.280
+to resemble the formula for kinetic energy…
+which makes a lot of sense.
+
+00:03:54.280 --> 00:03:58.800
+When blobs manage to eat two bits of food
+and return to the edge of the board, they
+
+00:03:58.800 --> 00:04:01.090
+are able to reproduce.
+
+00:04:01.090 --> 00:04:05.840
+This means the blob is duplicated but each
+of the duplicate’s traits are bumped up
+
+00:04:05.840 --> 00:04:08.410
+or down by a random amount.
+
+00:04:08.410 --> 00:04:14.189
+For example, for any given blob’s offspring,
+there's an equal chance of it being larger
+
+00:04:14.189 --> 00:04:20.459
+or smaller, faster or slower, seeing farther
+or being condemned to wander alone in the
+
+00:04:20.459 --> 00:04:27.010
+darkness, unaware of the scrumptious green
+rewards waiting beyond the edge of its nose.
+
+00:04:27.010 --> 00:04:31.530
+That is to say, there’s nothing built into
+the simulation that forces younger blobs to
+
+00:04:31.530 --> 00:04:34.919
+be better at reproducing than their parents.
+
+00:04:34.919 --> 00:04:40.360
+We don’t even know what better would be
+exactly, but we don’t need to.
+
+00:04:40.360 --> 00:04:45.860
+Given enough time, a large population’s
+traits will, on average, evolve towards an
+
+00:04:45.860 --> 00:04:49.590
+optimum for survival in the current environment.
+
+00:04:49.590 --> 00:04:54.919
+Blobs that, by chance, have traits closer
+to the optimum will have a higher chance of
+
+00:04:54.919 --> 00:05:00.320
+reproducing, and their offspring will have
+trait values closer to those successful parents
+
+00:05:00.320 --> 00:05:02.840
+than the rest of the population.
+
+00:05:02.840 --> 00:05:07.590
+You can get an overview of this adaptation
+by looking at the trends page.
+
+00:05:07.590 --> 00:05:11.720
+This shows how the traits of the blob population
+change over time.
+
+00:05:11.720 --> 00:05:15.919
+The brightest line is the average value of
+the trait.
+
+00:05:15.919 --> 00:05:20.470
+The region around the average is the standard
+deviation; which gives you an idea of how
+
+00:05:20.470 --> 00:05:24.000
+spread out the values are in the population.
+
+00:05:24.000 --> 00:05:28.720
+The highest and lowest lines are the maximum
+and minimum values for the trait.
+
+00:05:28.720 --> 00:05:32.490
+They correspond to the blobs at the top and
+bottom of the pack.
+
+00:05:32.490 --> 00:05:37.930
+For example, with these parameters when we
+look at sight range we can see a bunch of
+
+00:05:37.930 --> 00:05:42.880
+generations where there’s a huge spread
+in the standard deviation.
+
+00:05:42.880 --> 00:05:47.750
+We can switch back to the world view, look
+at a generation around that time and turn
+
+00:05:47.750 --> 00:05:52.540
+on the sight range indicators to see this
+trait value for every blob.
+
+00:05:52.540 --> 00:05:56.750
+Some of these circles are really big and others
+are really small.
+
+00:05:56.750 --> 00:06:01.720
+There’s a lot of deviation in the sight
+range in this generation.
+
+00:06:01.720 --> 00:06:06.760
+But, switching back to the trends page, we
+can see a bunch of generations where the standard
+
+00:06:06.760 --> 00:06:10.430
+deviation in the sight range is small.
+
+00:06:10.430 --> 00:06:14.490
+If we look at the blob world around that time,
+we can see that the sight range circles are
+
+00:06:14.490 --> 00:06:17.419
+roughly the same size.
+
+00:06:17.419 --> 00:06:21.720
+If you experiment with this a bit, you can
+notice some really interesting things about
+
+00:06:21.720 --> 00:06:23.250
+how these blobs evolve.
+
+00:06:23.250 --> 00:06:29.410
+For example, we can change how different baby
+blobs will be from their parents by changing
+
+00:06:29.410 --> 00:06:32.840
+the mutation variance in the settings.
+
+00:06:32.840 --> 00:06:38.040
+If we have a mutation variance in the size
+trait of around one, then that means baby
+
+00:06:38.040 --> 00:06:43.860
+blobs will have a chance of being bigger or
+smaller than their parents by a value of around
+
+00:06:43.860 --> 00:06:44.860
+one.
+
+00:06:44.860 --> 00:06:54.330
+Let’s turn up the playback speed and watch
+the blobs evolve for a while.
+
+00:06:54.330 --> 00:06:55.330
+[...]
+
+00:06:55.330 --> 00:07:04.620
+Notice that the small blobs are usually the
+last to find food.
+
+00:07:04.620 --> 00:07:10.009
+That’s because being small is much more
+energy efficient, so smaller blobs can wander
+
+00:07:10.009 --> 00:07:13.320
+around looking for food for longer.
+
+00:07:13.320 --> 00:07:18.590
+If we focus on one of the large blobs we can
+see that all it has time to do is chase a
+
+00:07:18.590 --> 00:07:24.160
+smaller blob and eat it before it runs out
+of energy and has to return home.
+
+00:07:24.160 --> 00:07:30.639
+A smaller blob, on the other hand, can wander
+a very long time before running out of energy.
+
+00:07:30.639 --> 00:07:35.919
+So there’s a selection pressure towards
+being smaller because smaller blobs can spend
+
+00:07:35.919 --> 00:07:39.700
+more time looking for two pieces of food.
+
+00:07:39.700 --> 00:07:44.740
+And if we look at the trend for the size trait
+we can see that it decreases from a value
+
+00:07:44.740 --> 00:07:49.919
+of 10 down to around 8 in 600 generations.
+
+00:07:49.919 --> 00:07:55.750
+So what happens if we decrease the mutation
+variance in the size trait so that baby blobs
+
+00:07:55.750 --> 00:07:58.840
+are less different than their parents.
+
+00:07:58.840 --> 00:08:03.520
+Will the average size decrease slower than
+before because they are mutating their size
+
+00:08:03.520 --> 00:08:05.430
+less?
+
+00:08:05.430 --> 00:08:07.889
+Turns out to be the opposite!
+
+00:08:07.889 --> 00:08:13.139
+In 600 generations, the size decreases to
+7 instead of 9.
+
+00:08:13.139 --> 00:08:19.610
+So if the blobs are mutating less, why does
+their average size evolve faster?
+
+00:08:19.610 --> 00:08:23.860
+If we compare the two worlds we can see why
+this could be the case.
+
+00:08:23.860 --> 00:08:27.860
+In the first world, there were blobs of many
+different sizes.
+
+00:08:27.860 --> 00:08:32.720
+Competition was fierce and if a blob happened
+to be smaller than the average, there was
+
+00:08:32.720 --> 00:08:37.850
+a larger chance that it was small enough to
+be eaten by a bigger blob.
+
+00:08:37.850 --> 00:08:44.170
+But in this new world, where the variation
+in size between blobs is small, most blobs
+
+00:08:44.170 --> 00:08:50.650
+are roughly the same size, so there’s almost
+no chance of being next to another blob that
+
+00:08:50.650 --> 00:08:53.000
+is big enough to pose a threat.
+
+00:08:53.000 --> 00:08:59.100
+In other words, there’s no cost in being
+slightly smaller so the average will decrease
+
+00:08:59.100 --> 00:09:00.980
+at a steady rate.
+
+00:09:00.980 --> 00:09:05.650
+This is a good thing to keep in mind; just
+because there’s a huge amount of mutation
+
+00:09:05.650 --> 00:09:09.080
+doesn’t mean evolution happens faster.
+
+00:09:09.080 --> 00:09:13.920
+The speed of evolution depends on the selective
+pressures in the environment.
+
+00:09:13.920 --> 00:09:19.910
+There’s something else I noticed when playing
+around with this that I found really amazing.
+
+00:09:19.910 --> 00:09:22.870
+It has to do with the age of the blobs.
+
+00:09:22.870 --> 00:09:27.430
+The age is how many generations a blob has
+existed so far.
+
+00:09:27.430 --> 00:09:33.500
+A newly born blob, for example, will have
+an age of zero and if it survives to the next
+
+00:09:33.500 --> 00:09:36.700
+generation it will have an age of 1.
+
+00:09:36.700 --> 00:09:42.870
+The weird thing is this: the average age of
+the blobs in a generation grows to around
+
+00:09:42.870 --> 00:09:48.550
+2, and then levels off, no matter how I change
+the settings.
+
+00:09:48.550 --> 00:09:51.270
+It does this every time.
+
+00:09:51.270 --> 00:09:55.780
+It looks like there must be some fundamental
+rule here to be discovered.
+
+00:09:55.780 --> 00:09:57.220
+So why does this happen?
+
+00:09:57.220 --> 00:10:03.150
+I actually think this explanation deserves
+its own video, so I’ll save it for another
+
+00:10:03.150 --> 00:10:04.440
+time.
+
+00:10:04.440 --> 00:10:08.290
+Until then, you’re welcome to try to figure
+it out for yourself.
+
+00:10:08.290 --> 00:10:12.110
+And I’d love to hear in the comments what
+kinds of behaviours and trends you notice
+
+00:10:12.110 --> 00:10:14.140
+while playing around with this.
+
+00:10:14.140 --> 00:10:18.650
+As usual thanks so much to those of you supporting
+me on Patreon.
+
+00:10:18.650 --> 00:10:22.560
+And I should mention that there’s another
+way to support me that would actually help
+
+00:10:22.560 --> 00:10:24.110
+me out even more.
+
+00:10:24.110 --> 00:10:28.040
+I’ve enabled github sponsors on my projects.
+
+00:10:28.040 --> 00:10:33.960
+If you have a github account, you can now
+go to my profile or a minutelabs github repository
+
+00:10:33.960 --> 00:10:36.420
+and click the Sponsor button.
+
+00:10:36.420 --> 00:10:41.070
+If you sponsor me by any amount, I get every
+penny of that money.
+
+00:10:41.070 --> 00:10:46.710
+Not only that, but github will match every
+donation I get through github sponsors…
+
+00:10:46.710 --> 00:10:52.920
+which effectively doubles all donations at
+no additional cost to you so I hope you consider
+
+00:10:52.920 --> 00:10:54.210
+doing that.
+
+00:10:54.210 --> 00:10:59.070
+If you do, let me know and I can add you to
+the list of MinuteLabs beta-testers if you’d
+
+00:10:59.070 --> 00:11:00.070
+like.
+
+00:11:00.070 --> 00:11:04.320
+Soon enough, I’ll be releasing enhancements
+to the Evolution Simulator to allow you to
+
+00:11:04.320 --> 00:11:07.830
+change how the blobs behave even more.
+
+00:11:07.830 --> 00:11:11.350
+So I’ll see you again, ...sooner than usual
+with something new.
+
