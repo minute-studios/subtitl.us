@@ -1,5 +1,5 @@
 <template lang="pug">
-fish-layout.fill-height
+PageLayout
   template(#header)
     BrowseHeader
   template(#content)

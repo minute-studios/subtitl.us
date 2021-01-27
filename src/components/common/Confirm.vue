@@ -1,29 +1,21 @@
 <template lang="pug">
-span.confirm
-  .confirmation(v-if="active")
-    fish-button(type="negative", :disabled="!ready", @click="confirm")
-      i.fa.fa-question-circle(v-if="ready")
-      i.fa.fa-hourglass-half(v-else)
-      span {{ msg }}
-  .to-confirm(v-else)
+.confirm
+  .to-confirm
     slot(v-bind:trigger="trigger")
+  vk-card.confirmation(v-if="active")
+    p {{ msg }}
+    vk-button-group
+      vk-button(type="danger", size="small", @click="confirm") Confirm
+      vk-button(size="small", @click="reset") Cancel
 </template>
 
 <script>
 export default {
   name: 'Confirm',
   props: {
-    popup: {
-      type: Boolean,
-      default: true
-    },
     msg: {
       type: String,
       default: 'Are you sure?'
-    },
-    timeout: {
-      type: Number,
-      default: 1000
     }
   },
   data(){
@@ -35,16 +27,7 @@ export default {
   },
   methods: {
     prompt(e){
-      if (this.popup){
-        this.$popup.confirm(e, this.msg, () => {
-          this.confirm()
-        }, 'Yes', 'No')
-      } else {
-        this.active = true
-        setTimeout(() => {
-          this.ready = true
-        }, this.timeout)
-      }
+      this.active = true
     },
     confirm(){
       this.reset()
@@ -59,4 +42,13 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.confirm
+  display: inline-block
+  position: relative
+  .confirmation
+    position: absolute
+    top: 100%
+    margin-top: -1px
+    border: 1px solid $light-border
+    border-radius: 3px
 </style>

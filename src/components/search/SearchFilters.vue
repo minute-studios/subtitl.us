@@ -1,21 +1,19 @@
 <template lang="pug">
 .search-filters
-  fish-row
-    fish-col(span="12")
-      fish-form
-        fish-fields
-          fish-field(span="24")
-            fish-input(icon="fa fa-search", hint="Search...")
-        fish-fields
-          fish-field
-            label.field-text Filter videos that
-          fish-field
-            fish-select(v-model="languageIncludes")
-              fish-option(index="0", content="are missing")
-              fish-option(index="1", content="already have")
-          fish-field
-            fish-select(multiple, v-model="languages", hint="Filter By Language")
-              fish-option(v-for="lang in supportedLanguages", :index="lang.id", :key="lang.id", :content="`${lang.name} (${lang.enName})`")
+  fish-form
+    fish-fields
+      fish-field(span="24")
+        fish-input(icon="fa fa-search", hint="Search...")
+    fish-fields
+      fish-field
+        label.field-text Filter videos that
+      fish-field
+        fish-select(v-model="languageIncludes")
+          fish-option(index="0", content="are missing")
+          fish-option(index="1", content="already have")
+      fish-field
+        fish-select(multiple, v-model="languages", hint="Filter By Language")
+          fish-option(v-for="lang in supportedLanguages", :index="lang.id", :key="lang.id", :content="`${lang.name} (${lang.enName})`")
 </template>
 
 <script>

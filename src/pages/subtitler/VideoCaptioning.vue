@@ -1,64 +1,55 @@
 <template lang="pug">
-fish-layout.fill-height
+PageLayout
   template(#header)
     BrowseHeader
   template(#content)
-    fish-layout.fill-height
-      template(#header)
-        fish-row(align="middle")
-          fish-col.pad-h(type="auto")
-            h3.header
-              small.muted Translating
-              .title {{video.title}}
-          fish-col(type="auto")
-            fish-form.pad-v(inline)
-              fish-field(label="Target Language")
-                fish-select(search, v-model="targetLang")
-                  fish-option(content="English", index="en", disabled)
-                  fish-option(content="French", index="fr")
-          fish-col(type="auto")
-            fish-form.pad-v.pad-r.align-right(inline)
-              fish-field
-                fish-button()
-                  span Save as Draft
+    .video-captioning
+      vk-grid.upper.uk-flex-middle.pad-h
+        .uk-width-auto
+          h3.heading
+            small.muted Translating
+            .title {{video.title}}
+        .uk-width-expand
+          label Target Language
+          v-select(v-model="targetLang", :options="languageChoices")
+        .uk-width-auto
+          vk-button-group
+            vk-button()
+              span Save as Draft
 
-              fish-field
-                fish-button(type="positive", size="huge")
-                  span Review and Submit
-                  i.fa.fa-chevron-right
+            vk-button(type="primary")
+              span Review and Submit
+              i.fa.fa-chevron-right
 
-      template(#content)
-        fish-row.full
-          fish-col(type="fixed", :width="348")
-            .video-panel.pad-h
-              VideoPlayer(ref="player", :youtubeId="videoId", @playing="onPlaying")
-              .tips
-                h6 Helpful keyboard shortcuts
-                ul
-                  li Enter: Move to next line and play
-                  li Shift+Enter: Play current line
+      .main
+        .sidebar
+          .video-panel.pad-h
+            VideoPlayer(ref="player", :youtubeId="videoId", @playing="onPlaying")
+            .tips
+              h6 Helpful keyboard shortcuts
+              ul
+                li Enter: Move to next line and play
+                li Shift+Enter: Play current line
 
-              fish-form.pad-v(inline)
-                fish-field
-                  Confirm(@confirm="clearTranslation")
-                    template(#default="{ trigger }")
-                      fish-button(@click="trigger") Delete changes
-                fish-field
-                  fish-button(type="primary", @click="autoTranslate") Auto Translate
+            .pad-v
+              Confirm(@confirm="clearTranslation")
+                template(#default="{ trigger }")
+                  vk-button(@click="trigger", size="small") Delete changes
+              vk-button(type="primary", @click="autoTranslate", size="small") Auto Translate
 
-          fish-col.main-area.inset-shadow(type="auto")
-            .pad-vh.scroll-area(v-if="targetLang")
-              CaptionTimeline(
-                v-if="captionData",
-                v-model="translatedCaptionData",
-                :current-time="currentTime",
-                :captions="captionData",
-                @typing="onTyping",
-                @prompt-click="playCue",
-                @focus-cue="playCue"
-              )
-            fish-segment.placeholder.choose-target-language(v-else)
-              p To start, choose a <strong>Target Language</strong> above.
+        .main-area.inset-shadow
+          .pad-vh.scroll-area(v-if="targetLang")
+            CaptionTimeline(
+              v-if="captionData",
+              v-model="translatedCaptionData",
+              :current-time="currentTime",
+              :captions="captionData",
+              @typing="onTyping",
+              @prompt-click="playCue",
+              @focus-cue="playCue"
+            )
+          .choose-target-language(v-else)
+            p To start, choose a <strong>Target Language</strong> above.
 
   template(#footer) Footer
 </template>
@@ -84,6 +75,10 @@ export default {
     video: {
       title: 'The Most Realistic Pokemon'
     },
+    languageChoices: [
+      { label: 'English', code: 'en' },
+      { label: 'French', code: 'fr' }
+    ],
     targetLang: null,
     currentTime: -1,
     captionData: new CaptionData(),
@@ -153,17 +148,28 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.header
-  margin: 0
-.pause-delay
-  width: 100px !important
-.row.full
+.video-captioning
+  flex: 1
+  display: flex
+  flex-direction: column
   height: 100%
-  align-items: stretch
-.main-area
-  background: $bg-subtle
-  &:before
-    border-radius: 3px 0 0 0
+.upper
+  height: 100px
+  .heading
+    margin-bottom: 0
+.main
+  flex: 1
+  display: flex
+  .sidebar
+    width: 354px
+  .main-area
+    display: flex
+    flex-direction: column
+    justify-content: center
+    flex: 1
+    background: $bg-subtle
+    &:before
+      border-radius: 3px 0 0 0
 .scroll-area
   overflow: scroll
   position: absolute
@@ -171,10 +177,8 @@ export default {
   left: 0
   right: 0
   bottom: 0
-.video-panel
-  .header
-    margin-top: 1em
 .choose-target-language
-  height: 100%
-  margin: 0
+  text-align: center
+  align-self: center
+  justify-self: center
 </style>

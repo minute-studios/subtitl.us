@@ -1,44 +1,27 @@
 <template lang="pug">
-fish-row.browse-header(align="middle")
-  fish-col(span="8")
-    fish-menu.menu(mode="horizontal" defaul-tactive="1", size="large")
-      fish-option(index="feed")
-        router-link(:to="{ name: 'feed' }") Browse Channels
-      fish-option(index="profile")
-        router-link(:to="{ name: 'profile' }") Profile
-      fish-option(index="drafts")
-        router-link(:to="{ name: 'drafts' }") My Drafts
-  fish-col(type="auto")
-    fish-form.search-form()
-      fish-fields(span="24")
-        fish-field(span="22")
-          fish-input(hint="Search")
-        fish-field
-          fish-button(type="basic")
-            i.fa.fa-search
-  fish-col.align-right(type="fixed", :width="200")
-    fish-dropdown(v-if="loggedIn", align="bottom-right")
-      fish-button(slot="title", type="basic")
-        i.fa.fa-user
-      fish-option(index="profile")
-        router-link(:to="{ name: 'profile' }") Profile
-      fish-option(index="mychannels")
-        router-link(:to="{ name: 'mychannels' }") My Channels
-      fish-option(index="logout")
-        router-link(:to="{ name: 'logout' }") Log Out
-    fish-dropdown(v-else, align="bottom-right")
-      fish-button(slot="title", type="basic") Log In / Sign Up
-      .login-dropdown-content
-        LoginForm
+vk-navbar.browse-header(transparent)
+  vk-navbar-nav(slot="left")
+    vk-navbar-nav-item(title="Browse Channels", active, :href="$href('feed')")
+    vk-navbar-nav-item(title="Profile", :href="$href('profile')")
+    vk-navbar-nav-item(title="My Drafts", :href="$href('drafts')")
+  vk-navbar-nav(slot="center")
+    form.search-form(action="javascript:void(0)")
+      input.uk-input.uk-form-width-small.uk-margin-small-right(type="text", placeholder="Search")
+  vk-navbar-nav(slot="right")
+    template(v-if="loggedIn")
+      vk-icon.clickable(icon="user")
+      vk-dropdown(mode="click")
+        vk-nav-dropdown
+          vk-nav-item(title="Profile")
+          vk-nav-item(title="My Channels")
+          vk-nav-item(title="Log Out")
+    vk-navbar-nav-item(v-else, title="Log In / Sign Up")
 </template>
 
 <script>
-import LoginForm from '@/components/login/LoginForm'
-
 export default {
   name: 'BrowseHeader',
   components: {
-    LoginForm
   },
   data: () => ({
     loggedIn: true
@@ -49,6 +32,10 @@ export default {
 <style lang="sass" scoped>
 .browse-header
   padding: 1rem
+  .uk-navbar-nav > li > a
+    color: $light-grey
+  .uk-navbar-nav > li.uk-active > a
+    color: white
 .fish.menu
   border-bottom: none
   background: transparent

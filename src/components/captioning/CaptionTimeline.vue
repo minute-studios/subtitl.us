@@ -1,18 +1,18 @@
 <template lang="pug">
-fish-timeline.caption-timeline
-  fish-timeline-item(v-for="(cue, i) in cues", :key="cue.data.start", :color="cue === activeCue ? 'green' : 'grey'", ref="cueEls")
+.caption-timeline
+  .caption-entry(v-for="(cue, i) in cues", ref="cueEls")
     .prompt.clickable(@click="$emit('prompt-click', cue.data)", :class="{ active: cue === activeCue }")
       span.timestamp {{ cue.data.start | duration }}
       span.original-text {{ cue.data.text }}
-    fish-input(
+    input.uk-input(
       type="text",
-      @keydown.enter.native="onEnterKey($event, i)"
-      @keydown.shift.enter.native="onEnterKey($event, i - 1)"
-      @keyup.native="onKeyup",
+      @keydown.enter="onEnterKey($event, i)"
+      @keydown.shift.enter="onEnterKey($event, i - 1)"
+      @keyup="onKeyup",
       v-model="targetCues[i].data.text"
       v-focus="i === focused"
     )
-  fish-timeline-item
+  .caption-entry
     span END
 </template>
 
@@ -117,8 +117,8 @@ export default {
   ::v-deep textarea
     resize: none
 
-  .event
-    margin-bottom: 1rem
+  .caption-entry
+    margin-bottom: 0.5rem
 
 .prompt
   color: $text-muted
